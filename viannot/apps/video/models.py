@@ -23,9 +23,11 @@ class Comment(models.Model) :
 	down = models.IntegerField('downvotes')
 
 class Reply(models.Model)
+        author = models.ForeignKey(User)
+        time = models.DateTimeField(auto_now_add=True)
 	comment = models.ForeignKey(Comment)
-	author = models.ForeignKey(User)
-	time = models.DateTimeField(auto_now_add=True)
+	content = models.CharField(max_length=140)
+	
 
 class Tag(models.Model) :
     tag_name = models.CharField(max_length=50)
