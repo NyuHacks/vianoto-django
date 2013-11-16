@@ -13,6 +13,9 @@ class Video(models.Model) :
 	date = models.DateTimeField(auto_now_add=True)
 	up = models.IntegerField('upvotes')
 	down = models.IntegerField('downvotes')
+	original_publisher = models.CharField(max_length=50)
+	original_date = models.DateTimeField()
+	description = models.CharField(max_length=500)
 	
 
 class Comment(models.Model) :
@@ -21,7 +24,9 @@ class Comment(models.Model) :
 	content = models.CharField(max_length=140)
 	up = models.IntegerField('upvotes')
 	down = models.IntegerField('downvotes')
+	x_coord = models.IntegerField()
+	y_coord = models.IntegerField()
 
 class Tag(models.Model) :
         tag_name = models.CharField(max_length=50)
-        video_tagged = models.ForeignKey(title)
+        video_tagged = models.ForeignKey(Video)
