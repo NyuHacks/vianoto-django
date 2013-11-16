@@ -19,11 +19,11 @@ def login(request) :
 	if user is not None :
 		if user.is_active:
 			login(request, user)
-			# redirect to a success page
+			return render(request, 'home.html', {'logged_in' : true})
 		else:
-			# return "disabled account"
+			return render(request, 'banned.html', {})
 	else:
-		# return "invalid login"
+		return render(request, 'login_fail.html', {})
 
 def logout_view(request):
     logout(request)
