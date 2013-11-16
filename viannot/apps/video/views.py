@@ -4,6 +4,13 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
+def home(request) :
+	if request.user.is_authenticated():
+		logged_in = True
+	else:
+		logged_in = False
+
+
 def loginview(request):
     c = {}
     c.update(csrf(request))
@@ -26,17 +33,19 @@ def create_user(username, email, password):
 def user_exists(username):
     user_count = User.objects.filter(username=username).count()
     if user_count == 0:
-        return False
+    	return False
     return True
 
 def sign_up_in(request):
     post = request.POST
     if not user_exists(post['email']): 
         user = create_user(username=post['email'], email=post['email'], password=post['password'])
-            return auth_and_login(request)
+        return auth_and_login(request)
     else:
-            return redirect("/login/")
+        	return redirect("/login/")
 
 @login_required(login_url='/login/')
 def secured(request):
-    return render_to_response("secure.html")
+	return render_to_response("secure.html")
+
+

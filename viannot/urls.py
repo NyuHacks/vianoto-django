@@ -9,6 +9,8 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Admin panel and documentation:
     url(r'^$', 'apps.video.views.home'),
+    url(r'^login', 'apps.video.views.loginview'),
+    url(r'^auth', 'apps.video.views.auth_and_login'),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )
