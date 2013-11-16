@@ -5,9 +5,9 @@ from django.contrib.auth import authenticate, login, logout
 
 def home(request) :
 	if request.user.is_authenticated():
-		logged_in = true
+		logged_in = True
 	else:
-		logged_in = false
+		logged_in = False
 
 	return render(request, 'home.html', {'logged_in' : logged_in})
 
@@ -19,7 +19,7 @@ def login(request) :
 	if user is not None :
 		if user.is_active:
 			login(request, user)
-			return render(request, 'home.html', {'logged_in' : true})
+			return render(request, 'home.html', {'logged_in' : True})
 		else:
 			return render(request, 'banned.html', {})
 	else:
